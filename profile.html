@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | Dear Me</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <img src="Dear Me Logo.png" alt="Dear Me">
+    </div>
+
+    <nav>
+        <a href="HomePage.html">🏠 <span>Home</span></a>
+        <a href="diary.html">📖 <span>My Diary</span></a>
+        <a href="reflection.html">🌿 <span>Reflections</span></a>
+        <a href="history.html">🧭 <span>My Journey</span></a>
+        <a href="profile.html" class="active">👤 <span>Profile</span></a>
+    </nav>
+
+    <button class="logout" onclick="logout()">Log out</button>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+            <h1>My Profile</h1>
+            <p>A little space about you.</p>
+        </div>
+
+    </header>
+
+
+    <section class="profile-card">
+
+        <div class="big-avatar" id="avatar">W</div>
+
+        <h2 id="displayName">Wesam</h2>
+
+        <p>Dear Me member</p>
+
+        <div class="profile-form">
+
+            <label>Your name</label>
+
+            <input
+                type="text"
+                id="nameInput"
+                placeholder="Your name"
+            >
+
+            <button onclick="saveProfile()">
+                Save changes
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <section class="account-card">
+
+        <h2>Your Dear Me journey</h2>
+
+        <div class="account-row">
+            <span>Diary entries</span>
+            <strong id="diaryCount">0</strong>
+        </div>
+
+        <div class="account-row">
+            <span>Reflections</span>
+            <strong id="reflectionCount">0</strong>
+        </div>
+
+        <div class="account-row">
+            <span>Check-ins</span>
+            <strong id="checkinCount">0</strong>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+function loadProfile() {
+
+    const user =
+        localStorage.getItem("dearMeUser") || "Wesam";
+
+    document.getElementById("displayName").textContent =
+        user;
+
+    document.getElementById("nameInput").value =
+        user;
+
+    document.getElementById("avatar").textContent =
+        user.charAt(0).toUpperCase();
+
+
+    const entries =
+        JSON.parse(localStorage.getItem("dearMeDiaryEntries")) || [];
+
+    const reflections =
+        JSON.parse(localStorage.getItem("dearMeReflections")) || [];
+
+    const checkins =
+        JSON.parse(localStorage.getItem("dearMeCheckins")) || {};
+
+
+    document.getElementById("diaryCount").textContent =
+        entries.length;
+
+    document.getElementById("reflectionCount").textContent =
+        reflections.length;
+
+    document.getElementById("checkinCount").textContent =
+        Object.keys(checkins).length;
+}
+
+
+function saveProfile() {
+
+    const name =
+        document.getElementById("nameInput").value.trim();
+
+    if (!name) {
+        alert("Please enter your name.");
+        return;
+    }
+
+    localStorage.setItem("dearMeUser", name);
+
+    loadProfile();
+
+    alert("Your profile has been updated.");
+}
+
+
+function logout() {
+
+    if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "login.html";
+    }
+
+}
+
+loadProfile();
+
+</script>
+
+</body>
+</html>

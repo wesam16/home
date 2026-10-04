@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary | Dear Me</title>
+    <link rel="stylesheet" href="diary.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+    <div class="logo">
+        <img src="Dear Me Logo.png" alt="Dear Me">
+    </div>
+
+    <nav>
+        <a href="HomePage.html">🏠 <span>Home</span></a>
+        <a href="diary.html" class="active">📖 <span>My Diary</span></a>
+        <a href="reflection.html">🌿 <span>Reflections</span></a>
+        <a href="history.html">🧭 <span>My Journey</span></a>
+        <a href="profile.html">👤 <span>Profile</span></a>
+    </nav>
+
+    <button class="logout" onclick="logout()">Log out</button>
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+        <div>
+            <h1>My Diary</h1>
+            <p>A place for your thoughts, exactly as they are.</p>
+        </div>
+
+        <a href="profile.html" class="profile">
+            <div class="avatar">W</div>
+        </a>
+    </header>
+
+    <section class="write-section">
+
+        <div class="date" id="entryDate"></div>
+
+        <textarea
+            id="diaryText"
+            placeholder="Dear me... What is on your mind today?"
+        ></textarea>
+
+        <div class="write-footer">
+            <span id="wordCount">0 words</span>
+            <button onclick="saveEntry()">Save entry</button>
+        </div>
+
+    </section>
+
+    <section class="entries-section">
+
+        <div class="section-title">
+            <h2>Your entries</h2>
+            <span id="entryCount">0 entries</span>
+        </div>
+
+        <div id="entriesContainer"></div>
+
+    </section>
+
+</main>
+
+<script>
+
+const today = new Date();
+
+document.getElementById("entryDate").textContent =
+    today.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
+
+const diaryText = document.getElementById("diaryText");
+
+diaryText.addEventListener("input", () => {
+    const words = diaryText.value.trim()
+        ? diaryText.value.trim().split(/\s+/).length
+        : 0;
+
+    document.getElementById("wordCount").textContent =
+        `${words} ${words === 1 ? "word" : "words"}`;
+});
+
+
+function saveEntry() {
+
+    const text = diaryText.value.trim();
+
+    if (!text) {
+        alert("Write something before saving your entry.");
+        return;
+    }
+
+    let entries =
+        JSON.parse(localStorage.getItem("dearMeDiaryEntries")) || [];
+
+    entries.unshift({
+        id: Date.now(),
+        text: text,
+        date: new Date().toISOString()
+    });
+
+    localStorage.setItem(
+        "dearMeDiaryEntries",
+        JSON.stringify(entries)
+    );
+
+    diaryText.value = "";
+    document.getElementById("wordCount").textContent = "0 words";
+
+    loadEntries();
+}
+
+
+function loadEntries() {
+
+    const container = document.getElementById("entriesContainer");
+
+    let entries =
+        JSON.parse(localStorage.getItem("dearMeDiaryEntries")) || [];
+
+    document.getElementById("entryCount").textContent =
+        `${entries.length} ${entries.length === 1 ? "entry" : "entries"}`;
+
+    if (entries.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <div>📖</div>
+                <h3>Your diary is waiting for you.</h3>
+                <p>Write your first entry above.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = entries.map(entry => {
+
+        const date = new Date(entry.date);
+
+        return `
+            <article class="entry-card">
+
+                <div class="entry-top">
+                    <span>
+                        ${date.toLocaleDateString("en-US", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric"
+                        })}
+                    </span>
+
+                    <button onclick="deleteEntry(${entry.id})">
+                        Delete
+                    </button>
+                </div>
+
+                <p>${escapeHTML(entry.text)}</p>
+
+            </article>
+        `;
+
+    }).join("");
+}
+
+
+function deleteEntry(id) {
+
+    if (!confirm("Delete this diary entry?")) return;
+
+    let entries =
+        JSON.parse(localStorage.getItem("dearMeDiaryEntries")) || [];
+
+    entries = entries.filter(entry => entry.id !== id);
+
+    localStorage.setItem(
+        "dearMeDiaryEntries",
+        JSON.stringify(entries)
+    );
+
+    loadEntries();
+}
+
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+function logout() {
+
+    if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "login.html";
+    }
+}
+
+
+loadEntries();
+
+</script>
+
+</body>
+</html>

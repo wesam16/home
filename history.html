@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Journey | Dear Me</title>
+    <link rel="stylesheet" href="history.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <img src="Dear Me Logo.png" alt="Dear Me">
+    </div>
+
+    <nav>
+        <a href="HomePage.html">🏠 <span>Home</span></a>
+        <a href="diary.html">📖 <span>My Diary</span></a>
+        <a href="reflection.html">🌿 <span>Reflections</span></a>
+        <a href="history.html" class="active">🧭 <span>My Journey</span></a>
+        <a href="profile.html">👤 <span>Profile</span></a>
+    </nav>
+
+    <button class="logout" onclick="logout()">Log out</button>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+            <h1>My Journey</h1>
+            <p>Look back at how you've been feeling.</p>
+        </div>
+
+        <a href="profile.html">
+            <div class="avatar">W</div>
+        </a>
+
+    </header>
+
+
+    <section class="stats">
+
+        <div class="stat">
+            <span>Average day</span>
+            <strong id="average">—</strong>
+            <small>out of 10</small>
+        </div>
+
+        <div class="stat">
+            <span>Diary entries</span>
+            <strong id="diaryCount">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Reflections</span>
+            <strong id="reflectionCount">0</strong>
+        </div>
+
+        <div class="stat">
+            <span>Day streak</span>
+            <strong id="streak">0</strong>
+            <small>days</small>
+        </div>
+
+    </section>
+
+
+    <section class="history-section">
+
+        <h2>Your recent reflections</h2>
+
+        <div id="reflectionHistory"></div>
+
+    </section>
+
+</main>
+
+<script>
+
+function loadJourney() {
+
+    const checkins =
+        JSON.parse(localStorage.getItem("dearMeCheckins")) || {};
+
+    const entries =
+        JSON.parse(localStorage.getItem("dearMeDiaryEntries")) || [];
+
+    const reflections =
+        JSON.parse(localStorage.getItem("dearMeReflections")) || [];
+
+
+    document.getElementById("diaryCount").textContent =
+        entries.length;
+
+    document.getElementById("reflectionCount").textContent =
+        reflections.length;
+
+
+    const values = Object.values(checkins)
+        .map(item => Number(item.rating))
+        .filter(Boolean);
+
+
+    if (values.length) {
+
+        const average =
+            values.reduce((a,b) => a+b,0) / values.length;
+
+        document.getElementById("average").textContent =
+            average.toFixed(1);
+
+    }
+
+
+    document.getElementById("streak").textContent =
+        calculateStreak(checkins);
+
+
+    const container =
+        document.getElementById("reflectionHistory");
+
+
+    if (!reflections.length) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <h3>Your journey is just beginning.</h3>
+                <p>Complete your first reflection to see it here.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = reflections.slice(0,10).map(item => {
+
+        const date = new Date(item.date);
+
+        return `
+            <article class="reflection-item">
+
+                <div class="reflection-date">
+                    ${date.toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric"
+                    })}
+                </div>
+
+                <div class="reflection-info">
+
+                    <strong>
+                        ${item.rating}/10
+                    </strong>
+
+                    <span>
+                        ${item.mood}
+                    </span>
+
+                </div>
+
+                ${
+                    item.gratitude
+                    ? `<p><b>Grateful for:</b> ${escapeHTML(item.gratitude)}</p>`
+                    : ""
+                }
+
+                ${
+                    item.bestPart
+                    ? `<p><b>Best part:</b> ${escapeHTML(item.bestPart)}</p>`
+                    : ""
+                }
+
+            </article>
+        `;
+
+    }).join("");
+
+}
+
+
+function calculateStreak(checkins) {
+
+    let streak = 0;
+
+    const date = new Date();
+
+    while (true) {
+
+        const key = date.toISOString().split("T")[0];
+
+        if (!checkins[key]) break;
+
+        streak++;
+
+        date.setDate(date.getDate() - 1);
+    }
+
+    return streak;
+}
+
+
+function escapeHTML(text) {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+function logout() {
+
+    if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "login.html";
+    }
+
+}
+
+loadJourney();
+
+</script>
+
+</body>
+</html>

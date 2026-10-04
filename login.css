@@ -1,0 +1,733 @@
+
+/* =========================================================
+   DEAR ME — LOGIN PAGE
+   Warm cream • Brown • Olive • Gold
+========================================================= */
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cream: #F7F3EC;
+    --cream-dark: #EDE5D9;
+
+    --brown: #4A3528;
+    --brown-light: #765D4B;
+
+    --green: #596B52;
+    --green-dark: #43523E;
+
+    --gold: #B28A52;
+
+    --text: #29251F;
+    --muted: #817B72;
+
+    --white: #FFFFFF;
+
+    --border: rgba(74, 53, 40, 0.15);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--cream);
+
+    color: var(--text);
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.page {
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================================================
+   LEFT SIDE — HERO
+========================================================= */
+
+.hero {
+    width: 58%;
+    min-height: 100vh;
+
+    padding: 42px 55px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: relative;
+
+    overflow: hidden;
+
+    color: white;
+
+    /*
+       Replace diary-background.jpg
+       with your chosen background image.
+    */
+
+    background-image:
+        linear-gradient(
+            rgba(55, 42, 32, 0.32),
+            rgba(55, 42, 32, 0.55)
+        ),
+        url("/Dear\ Me\ Logo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Subtle warm glow */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: -230px;
+    right: -180px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    filter: blur(5px);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+}
+
+.logo img {
+    width: 45px;
+    height: 45px;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 4px 10px rgba(0, 0, 0, 0.2)
+        );
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 570px;
+
+    margin-bottom: 45px;
+}
+
+
+/* Main heading */
+
+.hero h1 {
+    margin-bottom: 24px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(
+        48px,
+        5.5vw,
+        82px
+    );
+
+    font-weight: 400;
+
+    line-height: 0.98;
+
+    letter-spacing: -2px;
+
+    text-shadow:
+        0 3px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Description */
+
+.hero-text {
+    max-width: 430px;
+
+    color:
+        rgba(255, 255, 255, 0.9);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* Decorative line */
+
+.hero-content::after {
+    content: "";
+
+    display: block;
+
+    width: 65px;
+    height: 2px;
+
+    margin-top: 30px;
+
+    background: var(--gold);
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   RIGHT SIDE — LOGIN
+========================================================= */
+
+.login {
+    width: 42%;
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(178, 138, 82, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(89, 107, 82, 0.07),
+            transparent 30%
+        ),
+        var(--cream);
+}
+
+
+/* Decorative background circle */
+
+.login::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    bottom: -160px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    border: 1px solid
+        rgba(74, 53, 40, 0.08);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   LOGIN CONTAINER
+========================= */
+
+.login-container {
+    width: 100%;
+
+    max-width: 420px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   LOGIN HEADER
+========================================================= */
+
+.login h2 {
+    margin-bottom: 10px;
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 43px;
+
+    font-weight: 400;
+
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    margin-bottom: 38px;
+
+    color: var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: var(--brown);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+.form-group input {
+    width: 100%;
+
+    padding: 16px 17px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.72);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #AAA39A;
+}
+
+
+.form-group input:hover {
+    background: var(--white);
+}
+
+
+.form-group input:focus {
+    background: var(--white);
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(89, 107, 82, 0.10);
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+.options {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin:
+        5px 0
+        25px;
+
+    font-size: 13px;
+}
+
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--muted);
+
+    cursor: pointer;
+}
+
+
+.remember input {
+    width: 15px;
+    height: 15px;
+
+    accent-color: var(--green);
+
+    cursor: pointer;
+}
+
+
+/* Links */
+
+.options a,
+.signup a {
+    color: var(--green);
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.options a:hover,
+.signup a:hover {
+    color: var(--green-dark);
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   SIGN IN BUTTON
+========================================================= */
+
+.signin-btn {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(89, 107, 82, 0.20);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.signin-btn:hover {
+    background: var(--green-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(89, 107, 82, 0.25);
+}
+
+
+.signin-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 29px 0;
+
+    color: #AAA39A;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background:
+        rgba(74, 53, 40, 0.13);
+}
+
+
+/* =========================================================
+   GOOGLE BUTTON
+========================================================= */
+
+.google-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    color: var(--text);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 11px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.google-btn:hover {
+    background: var(--white);
+
+    border-color:
+        rgba(74, 53, 40, 0.25);
+
+    transform: translateY(-1px);
+}
+
+
+.google-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: #4285F4;
+}
+
+
+/* =========================================================
+   SIGN UP
+========================================================= */
+
+.signup {
+    margin-top: 30px;
+
+    color: var(--muted);
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .page {
+        flex-direction: column;
+    }
+
+
+    .hero {
+        width: 100%;
+
+        min-height: 500px;
+
+        padding: 30px;
+    }
+
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+
+    .login {
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 60px 30px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .hero {
+        min-height: 430px;
+
+        padding: 25px;
+    }
+
+
+    .logo {
+        font-size: 16px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .logo img {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .hero h1 {
+        font-size: 46px;
+
+        letter-spacing: -1px;
+    }
+
+
+    .hero-text {
+        font-size: 15px;
+    }
+
+
+    .login {
+        padding: 45px 23px;
+    }
+
+
+    .login h2 {
+        font-size: 36px;
+    }
+
+
+    .options {
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dear Me — Home</title>
+    <link rel="stylesheet" href="Homepage.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <img src="Dear Me Logo.png" alt="Dear Me">
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="HomePage.html" class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+
+            <a href="diary.html" class="nav-item">
+                <span class="nav-icon">📖</span>
+                <span>My Diary</span>
+            </a>
+
+            <a href="reflection.html" class="nav-item">
+                <span class="nav-icon">🌿</span>
+                <span>Reflections</span>
+            </a>
+
+            <a href="history.html" class="nav-item">
+                <span class="nav-icon">🧭</span>
+                <span>My Journey</span>
+            </a>
+
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">
+            <span>↪</span>
+            <span>Log out</span>
+        </button>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="page-header">
+            <div>
+                <p class="small-heading">WELCOME BACK</p>
+                <h1 id="greeting">Hello.</h1>
+                <p class="header-text">
+                    Take a moment for yourself today.
+                </p>
+            </div>
+
+            <div class="today-date" id="today-date"></div>
+        </header>
+
+
+        <!-- Today's Check-in -->
+        <section class="checkin-card">
+
+            <div class="section-title">
+                <div>
+                    <p class="small-heading">TODAY</p>
+                    <h2>How are you feeling?</h2>
+                </div>
+
+                <span class="section-icon">✦</span>
+            </div>
+
+            <p class="question">
+                How was your day out of 10?
+            </p>
+
+            <div class="rating-container" id="rating-container">
+                <button onclick="selectRating(1)">1</button>
+                <button onclick="selectRating(2)">2</button>
+                <button onclick="selectRating(3)">3</button>
+                <button onclick="selectRating(4)">4</button>
+                <button onclick="selectRating(5)">5</button>
+                <button onclick="selectRating(6)">6</button>
+                <button onclick="selectRating(7)">7</button>
+                <button onclick="selectRating(8)">8</button>
+                <button onclick="selectRating(9)">9</button>
+                <button onclick="selectRating(10)">10</button>
+            </div>
+
+
+            <p class="question mood-question">
+                What is your mood today?
+            </p>
+
+            <div class="mood-container">
+
+                <button class="mood-btn" onclick="selectMood('Happy', this)">
+                    <span>😊</span>
+                    Happy
+                </button>
+
+                <button class="mood-btn" onclick="selectMood('Calm', this)">
+                    <span>😌</span>
+                    Calm
+                </button>
+
+                <button class="mood-btn" onclick="selectMood('Okay', this)">
+                    <span>🙂</span>
+                    Okay
+                </button>
+
+                <button class="mood-btn" onclick="selectMood('Tired', this)">
+                    <span>😴</span>
+                    Tired
+                </button>
+
+                <button class="mood-btn" onclick="selectMood('Sad', this)">
+                    <span>😔</span>
+                    Sad
+                </button>
+
+            </div>
+
+            <button class="save-btn" onclick="saveCheckin()">
+                Save today's check-in
+            </button>
+
+            <p class="saved-message" id="saved-message"></p>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+        <section class="section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="small-heading">KEEP GOING</p>
+                    <h2>What would you like to do?</h2>
+                </div>
+            </div>
+
+            <div class="action-grid">
+
+                <a href="diary.html" class="action-card">
+                    <div class="action-icon">✎</div>
+                    <div>
+                        <h3>Write in your diary</h3>
+                        <p>
+                            Put your thoughts into words and let them out.
+                        </p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="reflection.html" class="action-card">
+                    <div class="action-icon">✦</div>
+                    <div>
+                        <h3>Reflect on your day</h3>
+                        <p>
+                            Answer a few questions and understand yourself better.
+                        </p>
+                    </div>
+                    <span class="arrow">→</span>
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Journey -->
+        <section class="section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="small-heading">YOUR JOURNEY</p>
+                    <h2>A little look back</h2>
+                </div>
+
+                <a href="history.html" class="view-link">
+                    View all →
+                </a>
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <span class="stat-icon">♡</span>
+                    <p>Average day</p>
+                    <strong id="average-rating">—</strong>
+                    <span class="stat-label">out of 10</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">✎</span>
+                    <p>Diary entries</p>
+                    <strong id="diary-count">0</strong>
+                    <span class="stat-label">written</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">✦</span>
+                    <p>Reflections</p>
+                    <strong id="reflection-count">0</strong>
+                    <span class="stat-label">completed</span>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-icon">↗</span>
+                    <p>Day streak</p>
+                    <strong id="streak-count">0</strong>
+                    <span class="stat-label">days</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Latest Thought -->
+        <section class="latest-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="small-heading">FROM YOUR DIARY</p>
+                    <h2>Your latest thought</h2>
+                </div>
+
+                <a href="diary.html" class="view-link">
+                    My diary →
+                </a>
+            </div>
+
+            <div class="latest-card" id="latest-entry">
+                <p class="empty-text">
+                    Your thoughts will appear here once you write your first diary entry.
+                </p>
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>Dear Me · A little space for you.</p>
+        </footer>
+
+    </main>
+
+
+    <script>
+
+        /* -------------------------
+           USER
+        ------------------------- */
+
+        const user = JSON.parse(localStorage.getItem("dearMeUser")) || {};
+        const name = user.name || "there";
+
+        document.getElementById("greeting").textContent =
+            `Hello, ${name}.`;
+
+
+        /* -------------------------
+           DATE
+        ------------------------- */
+
+        const today = new Date();
+
+        document.getElementById("today-date").textContent =
+            today.toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            });
+
+
+        /* -------------------------
+           CHECK-IN
+        ------------------------- */
+
+        let selectedRating = null;
+        let selectedMood = null;
+
+        const todayKey =
+            today.toISOString().split("T")[0];
+
+        const checkins =
+            JSON.parse(localStorage.getItem("dearMeCheckins")) || {};
+
+        function selectRating(rating) {
+
+            selectedRating = rating;
+
+            document
+                .querySelectorAll(".rating-container button")
+                .forEach(button => {
+                    button.classList.remove("selected");
+
+                    if (Number(button.textContent) === rating) {
+                        button.classList.add("selected");
+                    }
+                });
+        }
+
+
+        function selectMood(mood, button) {
+
+            selectedMood = mood;
+
+            document
+                .querySelectorAll(".mood-btn")
+                .forEach(btn => {
+                    btn.classList.remove("selected");
+                });
+
+            button.classList.add("selected");
+        }
+
+
+        function saveCheckin() {
+
+            if (!selectedRating || !selectedMood) {
+                document.getElementById("saved-message").textContent =
+                    "Choose a rating and a mood first.";
+                return;
+            }
+
+            checkins[todayKey] = {
+                rating: selectedRating,
+                mood: selectedMood,
+                date: todayKey
+            };
+
+            localStorage.setItem(
+                "dearMeCheckins",
+                JSON.stringify(checkins)
+            );
+
+            document.getElementById("saved-message").textContent =
+                "Today's check-in has been saved ♡";
+
+            updateStats();
+        }
+
+
+        /* -------------------------
+           LOAD TODAY'S CHECK-IN
+        ------------------------- */
+
+        if (checkins[todayKey]) {
+
+            selectedRating = checkins[todayKey].rating;
+            selectedMood = checkins[todayKey].mood;
+
+            selectRating(selectedRating);
+
+            document.querySelectorAll(".mood-btn").forEach(button => {
+
+                if (button.textContent.trim().includes(selectedMood)) {
+                    button.classList.add("selected");
+                }
+
+            });
+        }
+
+
+        /* -------------------------
+           STATS
+        ------------------------- */
+
+        function updateStats() {
+
+            const allCheckins =
+                Object.values(
+                    JSON.parse(localStorage.getItem("dearMeCheckins")) || {}
+                );
+
+            const diaryEntries =
+                JSON.parse(
+                    localStorage.getItem("dearMeDiaryEntries")
+                ) || [];
+
+            const reflections =
+                JSON.parse(
+                    localStorage.getItem("dearMeReflections")
+                ) || [];
+
+
+            document.getElementById("diary-count").textContent =
+                diaryEntries.length;
+
+            document.getElementById("reflection-count").textContent =
+                reflections.length;
+
+
+            if (allCheckins.length > 0) {
+
+                const average =
+                    allCheckins.reduce(
+                        (sum, item) => sum + Number(item.rating),
+                        0
+                    ) / allCheckins.length;
+
+                document.getElementById("average-rating").textContent =
+                    average.toFixed(1);
+
+            } else {
+
+                document.getElementById("average-rating").textContent =
+                    "—";
+
+            }
+
+
+            calculateStreak();
+            loadLatestEntry();
+        }
+
+
+        /* -------------------------
+           STREAK
+        ------------------------- */
+
+        function calculateStreak() {
+
+            const allCheckins =
+                JSON.parse(
+                    localStorage.getItem("dearMeCheckins")
+                ) || {};
+
+            let streak = 0;
+            let date = new Date();
+
+            while (true) {
+
+                const key =
+                    date.toISOString().split("T")[0];
+
+                if (!allCheckins[key]) {
+                    break;
+                }
+
+                streak++;
+
+                date.setDate(
+                    date.getDate() - 1
+                );
+            }
+
+            document.getElementById("streak-count").textContent =
+                streak;
+        }
+
+
+        /* -------------------------
+           LATEST DIARY ENTRY
+        ------------------------- */
+
+        function loadLatestEntry() {
+
+            const entries =
+                JSON.parse(
+                    localStorage.getItem("dearMeDiaryEntries")
+                ) || [];
+
+            const container =
+                document.getElementById("latest-entry");
+
+
+            if (entries.length === 0) {
+                return;
+            }
+
+
+            const latest =
+                entries[entries.length - 1];
+
+
+            const text =
+                latest.text ||
+                latest.content ||
+                "";
+
+
+            const date =
+                latest.date || "";
+
+
+            container.innerHTML = `
+                <span class="entry-date">${date}</span>
+                <p>${text}</p>
+                <a href="diary.html">Read in my diary →</a>
+            `;
+        }
+
+
+        /* -------------------------
+           LOGOUT
+        ------------------------- */
+
+        function logout() {
+
+            localStorage.removeItem("dearMeUser");
+
+            window.location.href = "index.html";
+        }
+
+
+        updateStats();
+
+    </script>
+
+</body>
+</html>

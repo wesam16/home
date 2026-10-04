@@ -1,0 +1,1558 @@
+
+/* =========================================================
+   DEAR ME — LANDING PAGE
+   Personal Reflection • Diary • Self Discovery
+========================================================= */
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+:root {
+
+    --cream: #F7F3EC;
+    --cream-dark: #EDE5D9;
+    --cream-light: #FCF9F4;
+
+    --brown: #4A3528;
+    --brown-light: #765D4B;
+
+    --green: #596B52;
+    --green-dark: #43523E;
+
+    --gold: #B28A52;
+
+    --text: #29251F;
+    --muted: #817B72;
+
+    --white: #FFFFFF;
+
+    --border: rgba(74, 53, 40, 0.13);
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--cream);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding:
+        27px 7vw;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 20;
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    color: var(--brown);
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+}
+
+
+.brand img {
+
+    width: 38px;
+    height: 38px;
+
+    object-fit: contain;
+}
+
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    font-size: 13px;
+}
+
+
+.nav-links > a:first-child {
+
+    color: var(--muted);
+}
+
+
+.nav-login {
+
+    padding:
+        10px 18px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 7px;
+
+    color: var(--brown);
+
+    font-weight: 700;
+
+    background:
+        rgba(255, 255, 255, 0.35);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.nav-login:hover {
+
+    background: white;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    padding:
+        145px 7vw
+        90px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 80px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 80% 35%,
+            rgba(178, 138, 82, 0.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 10% 80%,
+            rgba(89, 107, 82, 0.08),
+            transparent 27%
+        ),
+
+        var(--cream);
+}
+
+
+/* Decorative circle */
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(74, 53, 40, 0.05);
+
+    right: -250px;
+    top: -230px;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+
+    max-width: 650px;
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.eyebrow {
+
+    margin-bottom: 20px;
+
+    color: var(--green);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+.hero h1 {
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(52px, 6vw, 88px);
+
+    font-weight: 400;
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+}
+
+
+.hero h1 span {
+
+    display: block;
+
+    margin-top: 10px;
+
+    color: var(--green);
+
+    font-style: italic;
+}
+
+
+.description {
+
+    max-width: 510px;
+
+    margin-top: 30px;
+
+    color: var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 17px;
+
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+
+    margin-top: 37px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+.primary-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    padding:
+        15px 22px;
+
+    border-radius: 9px;
+
+    background: var(--green);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 10px 25px
+        rgba(89, 107, 82, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.primary-btn span {
+
+    font-size: 18px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.primary-btn:hover {
+
+    background: var(--green-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(89, 107, 82, 0.25);
+}
+
+
+.primary-btn:hover span {
+
+    transform: translateX(4px);
+}
+
+
+.secondary-btn {
+
+    padding-bottom: 5px;
+
+    border-bottom:
+        1px solid
+        rgba(74, 53, 40, 0.25);
+
+    color: var(--brown);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.secondary-btn:hover {
+
+    color: var(--green);
+
+    border-color: var(--green);
+}
+
+
+/* =========================================================
+   REFLECTION PREVIEW
+========================================================= */
+
+.reflection-preview {
+
+    width: 450px;
+
+    height: 550px;
+
+    flex-shrink: 0;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.preview-glow {
+
+    position: absolute;
+
+    width: 430px;
+    height: 430px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(178, 138, 82, 0.10);
+
+    filter: blur(35px);
+}
+
+
+/* =========================================================
+   MAIN REFLECTION CARD
+========================================================= */
+
+.reflection-card {
+
+    width: 355px;
+
+    min-height: 455px;
+
+    padding:
+        30px 32px;
+
+    position: relative;
+
+    z-index: 3;
+
+    background:
+        rgba(252, 249, 244, 0.96);
+
+    border:
+        1px solid
+        rgba(74, 53, 40, 0.12);
+
+    border-radius: 3px;
+
+    transform:
+        rotate(3deg);
+
+    box-shadow:
+        18px 25px 50px
+        rgba(74, 53, 40, 0.15);
+}
+
+
+.reflection-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 25px;
+
+    top: 0;
+
+    height: 100%;
+
+    width: 1px;
+
+    background:
+        rgba(178, 138, 82, 0.12);
+}
+
+
+/* Header */
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+}
+
+
+.small-label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--gold);
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.card-header p {
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 14px;
+}
+
+
+.card-star {
+
+    color: var(--gold);
+
+    font-size: 18px;
+}
+
+
+.card-divider {
+
+    height: 1px;
+
+    margin:
+        19px 0 24px;
+
+    background:
+        rgba(74, 53, 40, 0.11);
+}
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+.question {
+
+    margin-bottom: 25px;
+}
+
+
+.question-title {
+
+    margin-bottom: 12px;
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+}
+
+
+/* Rating */
+
+.rating {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.rating span {
+
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(74, 53, 40, 0.14);
+
+    border-radius: 50%;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+.rating .active {
+
+    background: var(--green);
+
+    border-color: var(--green);
+
+    color: white;
+
+    box-shadow:
+        0 4px 10px
+        rgba(89, 107, 82, 0.18);
+}
+
+
+/* Mood */
+
+.moods {
+
+    display: flex;
+
+    gap: 9px;
+}
+
+
+.moods span {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 15px;
+
+    background:
+        rgba(237, 229, 217, 0.6);
+
+    opacity: 0.65;
+}
+
+
+.moods .selected {
+
+    opacity: 1;
+
+    background:
+        rgba(178, 138, 82, 0.14);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(178, 138, 82, 0.25);
+}
+
+
+/* Writing */
+
+.writing-line {
+
+    color: #AAA39A;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* Footer */
+
+.card-footer {
+
+    position: absolute;
+
+    bottom: 24px;
+
+    left: 32px;
+    right: 32px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #AAA39A;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   FLOATING CARDS
+========================================================= */
+
+.mini-card,
+.mood-card {
+
+    position: absolute;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding:
+        13px 16px;
+
+    background:
+        rgba(255, 255, 255, 0.90);
+
+    border:
+        1px solid
+        rgba(74, 53, 40, 0.10);
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(74, 53, 40, 0.10);
+}
+
+
+.mini-card {
+
+    left: 0;
+
+    bottom: 80px;
+
+    transform:
+        rotate(-4deg);
+}
+
+
+.mood-card {
+
+    right: 0;
+
+    top: 95px;
+
+    transform:
+        rotate(4deg);
+}
+
+
+.mini-icon {
+
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(89, 107, 82, 0.10);
+
+    color: var(--green);
+}
+
+
+.mood-card > span {
+
+    color: var(--gold);
+
+    font-size: 17px;
+}
+
+
+.mini-card strong,
+.mood-card strong {
+
+    display: block;
+
+    color: var(--brown);
+
+    font-size: 11px;
+}
+
+
+.mini-card p,
+.mood-card p {
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   HOW IT WORKS
+========================================================= */
+
+.how {
+
+    padding:
+        120px 7vw;
+
+    background:
+        var(--cream-light);
+}
+
+
+.section-heading {
+
+    max-width: 650px;
+
+    margin: 0 auto 70px;
+
+    text-align: center;
+}
+
+
+.section-heading h2 {
+
+    margin-bottom: 20px;
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(40px, 5vw, 60px);
+
+    font-weight: 400;
+
+    letter-spacing: -2px;
+}
+
+
+.section-heading > p:last-child {
+
+    color: var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
+
+.feature-grid {
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+
+.feature-card {
+
+    padding: 40px 35px;
+
+    min-height: 290px;
+
+    position: relative;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(247, 243, 236, 0.65);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.feature-card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(74, 53, 40, 0.08);
+}
+
+
+.feature-card.featured {
+
+    background:
+        var(--green);
+
+    border-color: var(--green);
+
+    color: white;
+
+    transform:
+        translateY(-15px);
+}
+
+
+.feature-card.featured:hover {
+
+    transform:
+        translateY(-20px);
+}
+
+
+.feature-number {
+
+    color: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+
+.feature-icon {
+
+    margin:
+        35px 0 18px;
+
+    color: var(--green);
+
+    font-size: 25px;
+}
+
+
+.featured .feature-icon {
+
+    color: #D6BC8E;
+}
+
+
+.feature-card h3 {
+
+    margin-bottom: 12px;
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 27px;
+
+    font-weight: 400;
+}
+
+
+.featured h3 {
+
+    color: white;
+}
+
+
+.feature-card p {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.featured p {
+
+    color:
+        rgba(255, 255, 255, 0.68);
+}
+
+
+/* =========================================================
+   QUESTIONS SECTION
+========================================================= */
+
+.questions {
+
+    padding:
+        130px 7vw;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 100px;
+
+    background:
+        var(--cream-dark);
+}
+
+
+.questions-content {
+
+    max-width: 510px;
+}
+
+
+.questions-content h2 {
+
+    margin-bottom: 25px;
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(40px, 5vw, 62px);
+
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+}
+
+
+.questions-content > p:last-child {
+
+    color: var(--muted);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+}
+
+
+/* Question list */
+
+.question-list {
+
+    width: 500px;
+
+    max-width: 100%;
+}
+
+
+.question-item {
+
+    padding:
+        20px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        35px 1fr 35px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    border-bottom:
+        1px solid
+        rgba(74, 53, 40, 0.12);
+}
+
+
+.question-item:first-child {
+
+    border-top:
+        1px solid
+        rgba(74, 53, 40, 0.12);
+}
+
+
+.question-item > span {
+
+    color: var(--gold);
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+.question-item p {
+
+    color: var(--brown);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 15px;
+}
+
+
+.question-item strong {
+
+    color: var(--green);
+
+    text-align: right;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FINAL CTA
+========================================================= */
+
+.final-cta {
+
+    padding:
+        140px 30px;
+
+    text-align: center;
+
+    background:
+        var(--brown);
+
+    color: white;
+}
+
+
+.final-cta .eyebrow {
+
+    color: #D6BC8E;
+}
+
+
+.final-cta h2 {
+
+    max-width: 750px;
+
+    margin:
+        0 auto 20px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(48px, 6vw, 78px);
+
+    font-weight: 400;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+
+.final-cta h2 em {
+
+    color: #D6BC8E;
+
+    font-weight: 400;
+}
+
+
+.final-cta > p:not(.eyebrow) {
+
+    margin-bottom: 35px;
+
+    color:
+        rgba(255, 255, 255, 0.6);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 16px;
+}
+
+
+.final-cta .primary-btn {
+
+    background: #D6BC8E;
+
+    color: var(--brown);
+
+    box-shadow: none;
+}
+
+
+.final-cta .primary-btn:hover {
+
+    background: #E4D0AA;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    padding:
+        30px 7vw;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: var(--brown);
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.10);
+}
+
+
+.footer-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #D6BC8E;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+.footer-brand img {
+
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+}
+
+
+footer p {
+
+    color:
+        rgba(255, 255, 255, 0.45);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .hero {
+
+        flex-direction: column;
+
+        text-align: center;
+
+        padding-top: 140px;
+    }
+
+
+    .description {
+
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero-buttons {
+
+        justify-content: center;
+    }
+
+
+    .reflection-preview {
+
+        width: 430px;
+    }
+
+
+    .questions {
+
+        flex-direction: column;
+
+        gap: 60px;
+    }
+
+
+    .questions-content {
+
+        text-align: center;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .navbar {
+
+        padding:
+            22px 24px;
+    }
+
+
+    .nav-links > a:first-child {
+
+        display: none;
+    }
+
+
+    .brand {
+
+        font-size: 12px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .brand img {
+
+        width: 32px;
+        height: 32px;
+    }
+
+
+    .hero {
+
+        padding:
+            125px 24px
+            70px;
+    }
+
+
+    .hero h1 {
+
+        font-size: 52px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .description {
+
+        font-size: 15px;
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+    }
+
+
+    .primary-btn {
+
+        width: 100%;
+
+        max-width: 280px;
+    }
+
+
+    .reflection-preview {
+
+        width: 100%;
+
+        height: 470px;
+    }
+
+
+    .reflection-card {
+
+        width: 290px;
+
+        min-height: 400px;
+
+        padding:
+            27px;
+    }
+
+
+    .rating {
+
+        gap: 4px;
+    }
+
+
+    .rating span {
+
+        width: 25px;
+        height: 25px;
+    }
+
+
+    .mini-card {
+
+        left: 0;
+
+        bottom: 40px;
+    }
+
+
+    .mood-card {
+
+        right: 0;
+
+        top: 65px;
+    }
+
+
+    .how {
+
+        padding:
+            90px 24px;
+    }
+
+
+    .feature-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .feature-card.featured {
+
+        transform: none;
+    }
+
+
+    .feature-card.featured:hover {
+
+        transform: translateY(-5px);
+    }
+
+
+    .questions {
+
+        padding:
+            90px 24px;
+    }
+
+
+    .questions-content h2 {
+
+        font-size: 42px;
+    }
+
+
+    .question-item {
+
+        grid-template-columns:
+            25px 1fr 30px;
+    }
+
+
+    .final-cta {
+
+        padding:
+            100px 24px;
+    }
+
+
+    .final-cta h2 {
+
+        font-size: 50px;
+    }
+
+
+    footer {
+
+        flex-direction: column;
+
+        gap: 12px;
+
+        text-align: center;
+    }
+}

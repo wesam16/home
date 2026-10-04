@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reflections | Dear Me</title>
+    <link rel="stylesheet" href="reflection.css">
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <img src="Dear Me Logo.png" alt="Dear Me">
+    </div>
+
+    <nav>
+        <a href="HomePage.html">🏠 <span>Home</span></a>
+        <a href="diary.html">📖 <span>My Diary</span></a>
+        <a href="reflection.html" class="active">🌿 <span>Reflections</span></a>
+        <a href="history.html">🧭 <span>My Journey</span></a>
+        <a href="profile.html">👤 <span>Profile</span></a>
+    </nav>
+
+    <button class="logout" onclick="logout()">Log out</button>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div>
+            <h1>Reflections</h1>
+            <p>Take a moment to check in with yourself.</p>
+        </div>
+
+        <a href="profile.html">
+            <div class="avatar">W</div>
+        </a>
+
+    </header>
+
+    <section class="reflection-card">
+
+        <div class="date" id="date"></div>
+
+        <h2>How was your day?</h2>
+
+        <div class="ratings" id="ratings">
+
+            <button data-rating="1">1</button>
+            <button data-rating="2">2</button>
+            <button data-rating="3">3</button>
+            <button data-rating="4">4</button>
+            <button data-rating="5">5</button>
+            <button data-rating="6">6</button>
+            <button data-rating="7">7</button>
+            <button data-rating="8">8</button>
+            <button data-rating="9">9</button>
+            <button data-rating="10">10</button>
+
+        </div>
+
+        <h2>How are you feeling?</h2>
+
+        <div class="moods">
+
+            <button data-mood="Happy">😊<span>Happy</span></button>
+            <button data-mood="Good">🙂<span>Good</span></button>
+            <button data-mood="Okay">😐<span>Okay</span></button>
+            <button data-mood="Sad">😔<span>Sad</span></button>
+            <button data-mood="Stressed">😣<span>Stressed</span></button>
+
+        </div>
+
+        <div class="questions">
+
+            <label>What are you grateful for today?</label>
+            <textarea id="gratitude"
+                placeholder="It could be something small..."></textarea>
+
+            <label>What was the best part of your day?</label>
+            <textarea id="bestPart"
+                placeholder="Tell yourself about it..."></textarea>
+
+            <label>Was anything difficult today?</label>
+            <textarea id="challenge"
+                placeholder="It's okay to be honest here..."></textarea>
+
+            <label>What would you like to remember about today?</label>
+            <textarea id="reflection"
+                placeholder="Write whatever comes to mind..."></textarea>
+
+        </div>
+
+        <button class="save" onclick="saveReflection()">
+            Save reflection
+        </button>
+
+    </section>
+
+</main>
+
+<script>
+
+let selectedRating = null;
+let selectedMood = null;
+
+const date = new Date();
+
+document.getElementById("date").textContent =
+    date.toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
+
+
+document.querySelectorAll(".ratings button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        selectedRating = Number(button.dataset.rating);
+
+        document.querySelectorAll(".ratings button")
+            .forEach(btn => btn.classList.remove("selected"));
+
+        button.classList.add("selected");
+
+    });
+
+});
+
+
+document.querySelectorAll(".moods button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        selectedMood = button.dataset.mood;
+
+        document.querySelectorAll(".moods button")
+            .forEach(btn => btn.classList.remove("selected"));
+
+        button.classList.add("selected");
+
+    });
+
+});
+
+
+function saveReflection() {
+
+    if (!selectedRating || !selectedMood) {
+        alert("Please choose your rating and mood first.");
+        return;
+    }
+
+    const reflection = {
+
+        id: Date.now(),
+
+        date: new Date().toISOString(),
+
+        rating: selectedRating,
+
+        mood: selectedMood,
+
+        gratitude: document.getElementById("gratitude").value,
+
+        bestPart: document.getElementById("bestPart").value,
+
+        challenge: document.getElementById("challenge").value,
+
+        reflection: document.getElementById("reflection").value
+
+    };
+
+    let reflections =
+        JSON.parse(localStorage.getItem("dearMeReflections")) || [];
+
+    reflections.unshift(reflection);
+
+    localStorage.setItem(
+        "dearMeReflections",
+        JSON.stringify(reflections)
+    );
+
+    alert("Your reflection has been saved 🌿");
+
+    window.location.href = "history.html";
+}
+
+
+function logout() {
+
+    if (confirm("Are you sure you want to log out?")) {
+        window.location.href = "login.html";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
